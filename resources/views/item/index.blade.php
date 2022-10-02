@@ -28,6 +28,7 @@
                                 <th>名前</th>
                                 <th>種別</th>
                                 <th>詳細</th>
+                                <th>更新</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,8 +36,9 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
+                                    <td class="btn btn-warning"><a href ="/items/update">更新</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

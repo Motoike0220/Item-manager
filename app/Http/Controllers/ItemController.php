@@ -24,12 +24,13 @@ class ItemController extends Controller
     public function index()
     {
         // 商品一覧取得
+        $type = Item::TYPE;
         $items = Item
             ::where('items.status', 'active')
             ->select()
             ->get();
 
-        return view('item.index', compact('items'));
+        return view('item.index', compact('items','type'));
     }
 
     /**
@@ -54,7 +55,14 @@ class ItemController extends Controller
 
             return redirect('/items');
         }
+        $type = Item::TYPE;
+        return view('item.add',compact('type'));
+    }
 
-        return view('item.add');
+    public function update(Request $request){
+        $item = Item::find($request->id);
+        $type = Item::TYPE;
+
+        return view('item.update',compact('item','type'));
     }
 }

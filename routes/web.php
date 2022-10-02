@@ -25,4 +25,9 @@ Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
     Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
     Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    Route::get('/update', [App\Http\Controllers\ItemController::class, 'update']);
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers']);
 });
