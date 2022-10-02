@@ -70,6 +70,7 @@ class ItemController extends Controller
             
             Item::find($request->id)->update([
                 'user_id' => Auth::user()->id,
+                'user_name' => Auth::user()->name, 
                 'name' => $request->name,
                 'type' => $request->type,
                 'detail' => $request->detail,

@@ -6,7 +6,7 @@
 
 <h1>更新</h1>
 
-<form method='post' action='/item/update'>
+<form method='post' action='/items/update'>
     @csrf
     <p><input name='name' type='text' value="{{old('name',$item->name)}}" placeholder='名前'></p>
     <p><select name='type'></p>
