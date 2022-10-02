@@ -26,7 +26,7 @@ class ItemController extends Controller
         // 商品一覧取得
         $type = Item::TYPE;
         $items = Item
-            ::where('items.status', 'active')
+            ::where('items.status', '1')
             ->select()
             ->get();
 
@@ -48,6 +48,7 @@ class ItemController extends Controller
             // 商品登録
             Item::create([
                 'user_id' => Auth::user()->id,
+                'user_name' => Auth::user()->name,
                 'name' => $request->name,
                 'type' => $request->type,
                 'detail' => $request->detail,
@@ -59,9 +60,25 @@ class ItemController extends Controller
         return view('item.add',compact('type'));
     }
 
+    //商品の更新
     public function update(Request $request){
-        $item = Item::find($request->id);
-        $type = Item::TYPE;
+         // POSTリクエストのとき
+         $item = Item::find($request->id);
+         $type = Item::TYPE;
+         
+         if ($request->isMethod('post')) {
+            
+            Item::find($request->id)->update([
+                'user_id' => Auth::user()->id,
+                'name' => $request->name,
+                'type' => $request->type,
+                'detail' => $request->detail,
+            ]);
+
+            return redirect('/items');
+        }
+        
+     
 
         return view('item.update',compact('item','type'));
     }

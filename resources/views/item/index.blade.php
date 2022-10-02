@@ -25,6 +25,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>作成者</th>
                                 <th>名前</th>
                                 <th>種別</th>
                                 <th>詳細</th>
@@ -35,10 +36,11 @@
                             @foreach ($items as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
+                                    <td>{{ $item->user_name }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
-                                    <td class="btn btn-warning"><a href ="/items/update">更新</a></td>
+                                    <td class="btn btn-warning"><a href ="/items/update{{$item->id}}">更新</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
