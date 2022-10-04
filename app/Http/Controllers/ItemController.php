@@ -78,9 +78,29 @@ class ItemController extends Controller
 
             return redirect('/items');
         }
-        
-     
 
         return view('item.update',compact('item','type'));
     }
+
+    //削除された商品一覧
+
+    public function deletedItems(Request $request){
+        $items=Item::where('status',0)->get();
+        $type = Item::TYPE;
+        return view('item.deletedItems',compact('items','type'));
+    }
+
+    //商品の一時削除
+    public function delete(Request $request){
+        if($request->isMethod('post')){
+            Item::where('id',$request->id)->where('status','1')->update(['status' => '0']);
+            return redirect('/items');
+        } 
+        Item::where('id',$request->id)->where('status','0')->delete();
+        return redirect('/items');
+    }
+        
+
+
 }
+

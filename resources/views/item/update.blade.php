@@ -12,12 +12,18 @@
     <p><select name='type'></p>
         <option>種類を選択してください</option>
         @foreach($type as $key => $value)
-        <option value ="{{$key}}">{{$value}}</option>
+        <option value ="{{$key}}" {{$item->type == $key ? "selected" : "" }}>{{$value}}</option>
         @endforeach
     </select>
     <p><textarea name='detail' placeholder='詳細'>{{old('detail',$item->detail)}}</textarea></p>
     <p><button type='submit' class ='btn btn-warning'>更新</button></p>
     <input type='hidden' name='id' value='{{$item->id}}'>
+</form>
+
+<form method='post' action='/items/delete'>
+    @csrf
+    <input type='hidden' name='id' value='{{$item->id}}'>
+    <button type='submit' class='btn btn-danger'>削除</button>
 </form>
 
 @stop

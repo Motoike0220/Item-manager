@@ -27,6 +27,9 @@ Route::prefix('items')->group(function () {
     Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
     Route::get('/update{id}', [App\Http\Controllers\ItemController::class, 'update']);
     Route::post('/update', [App\Http\Controllers\ItemController::class, 'update']);
+    Route::get('/deletedItems', [App\Http\Controllers\ItemController::class, 'deletedItems']);
+    Route::post('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
+    Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
 });
 
 Route::prefix('users')->group(function () {
