@@ -34,4 +34,12 @@ Route::prefix('items')->group(function () {
 
 Route::prefix('users')->group(function () {
     Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers']);
+    Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+    Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+});
+
+Route::prefix('search')->group(function () {
+    Route::get('/', [App\Http\Controllers\SearchController::class, 'search']);
+    //Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+    //Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
 });

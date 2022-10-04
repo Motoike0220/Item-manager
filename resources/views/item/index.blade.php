@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+<p><a href ="/items/deletedItems">削除された商品</a></p>
 @stop
 
 @section('css')

@@ -81,9 +81,8 @@ class ItemController extends Controller
 
         return view('item.update',compact('item','type'));
     }
-
+    
     //削除された商品一覧
-
     public function deletedItems(Request $request){
         $items=Item::where('status',0)->get();
         $type = Item::TYPE;
@@ -92,10 +91,12 @@ class ItemController extends Controller
 
     //商品の一時削除
     public function delete(Request $request){
+        //postの時一時削除
         if($request->isMethod('post')){
             Item::where('id',$request->id)->where('status','1')->update(['status' => '0']);
             return redirect('/items');
         } 
+        //getで完全削除
         Item::where('id',$request->id)->where('status','0')->delete();
         return redirect('/items');
     }
