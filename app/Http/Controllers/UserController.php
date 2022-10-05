@@ -17,16 +17,15 @@ class UserController extends Controller
 
     //ユーザーの更新
     public function edit(Request $request){
+        $user = User::find($request->id);
         if($request->isMethod('post')){
             User::find($request->id)->update([
                 'name' => $request->name,
-                'email' => $request->email,
-                'user_level' => $request->user_level
             ]);
 
             return redirect('/users');
         }
-        return view('users.edit');
+        return view('users.edit',compact('user'));
     }
 
     //

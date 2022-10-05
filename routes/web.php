@@ -18,19 +18,20 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-
+//一般ユーザー
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+
+//検索
 Route::prefix('search')->group(function () {
-    Route::get('/', [App\Http\Controllers\SearchController::class, 'search']);
-    //Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit']);
-    //Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+    Route::get('/items', [App\Http\Controllers\SearchController::class, 'searchItems']);
+    Route::get('/users', [App\Http\Controllers\SearchController::class, 'searchUsers']);
 });
 
+//管理者のみ
 Route::group(['middleware' => ['auth','can:Admin']],function(){
-
+    //商品管理
     Route::prefix('items')->group(function () {
-        //Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
         Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
         Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
         Route::get('/update{id}', [App\Http\Controllers\ItemController::class, 'update']);
@@ -39,10 +40,10 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
         Route::post('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
         Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
     });
-    
+    //ユーザー管理
     Route::prefix('users')->group(function () {
         Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers']);
-        Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+        Route::get('/edit{id}', [App\Http\Controllers\UserController::class, 'edit']);
         Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
     });
 });

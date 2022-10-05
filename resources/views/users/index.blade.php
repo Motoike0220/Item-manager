@@ -36,7 +36,7 @@
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->user_level }}</td>
-                                    <td class="btn btn-warning"><a href ="/items/update{{$user->id}}">更新</a></td>
+                                    <td class="btn btn-warning"><a href ="/users/edit{{$user->id}}">更新</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-<p><a href ="/items/deletedItems">削除された商品</a></p>
+
 @stop
 
 @section('css')

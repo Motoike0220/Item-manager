@@ -53,7 +53,9 @@
             </div>
         </div>
     </div>
+    @can ('Admin')
 <p><a href ="/items/deletedItems">削除された商品</a></p>
+    @endcan
 @stop
 
 @section('css')
