@@ -29,7 +29,9 @@
                                 <th>名前</th>
                                 <th>種別</th>
                                 <th>詳細</th>
+                                @can ('Admin')
                                 <th>更新</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +42,9 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
+                                    @can ('Admin')
                                     <td class="btn btn-warning"><a href ="/items/update{{$item->id}}">更新</a></td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>
