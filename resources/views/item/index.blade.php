@@ -3,7 +3,7 @@
 @section('title', '商品一覧')
 
 @section('content_header')
-    <h1>商品一覧</h1>
+
 @stop
 
 @section('content')
@@ -15,12 +15,28 @@
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
+                                @can ('Admin')
                                 <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
+                    <form method='get' action='/items'  class ='form-inline my-2 my-lg-0 ml-2'>
+                        <p>検索条件</p>
+                        <select name="column">
+                            <option value='id'>ID</option>
+                            <option value='user_name'>作成者</option>
+                            <option value='name'>商品名</option>
+                            <option value='type'>種別</option>
+                        </select>
+                        <div class ='form-group'>
+                        <input type ='search' class ='form-control mr-sm-2' name ='keyword' aria-label='検索'>
+                        </div>
+                        <input type='submit' value='検索' class='btn btn-info'>
+                    </form>
+
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -43,7 +59,7 @@
                                     <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
                                     @can ('Admin')
-                                    <td class="btn btn-warning"><a href ="/items/update{{$item->id}}">更新</a></td>
+                                    <td class="btn btn-info"><a href ="/items/update{{$item->id}}">更新</a></td>
                                     @endcan
                                 </tr>
                             @endforeach
@@ -53,9 +69,13 @@
             </div>
         </div>
     </div>
+    {!! $items->links() !!}
     @can ('Admin')
-<p><a href ="/items/deletedItems">削除された商品</a></p>
+        <p><a href ="/items/deletedItems">削除された商品</a></p>
+        <p><a href ="{{route('showUsers')}}">ユーザー一覧</a></p>
+        <p><a href ="{{route('searchUsers')}}">ユーザー検索</a></p>
     @endcan
+    <p><a href ="{{route('searchItems')}}">商品の検索</a></p>
 @stop
 
 @section('css')

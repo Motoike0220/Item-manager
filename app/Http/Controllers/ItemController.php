@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 
+use Illuminate\Pagination\Paginator;
+
 class ItemController extends Controller
 {
     /**
@@ -21,16 +23,29 @@ class ItemController extends Controller
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
+       
+        if(isset($request->column)) {
+
+        $type = Item::TYPE;
+        $column = $request->input('column');
+        $keyword =$request->input('keyword');
+        $items = Item::where('status',1)
+        ->where($request->column,'LIKE',"%".$keyword."%")
+        ->paginate(3);
+
+        return view('item.index',compact('items','type'));
+
+        } else {
         // 商品一覧取得
         $type = Item::TYPE;
-        $items = Item
-            ::where('items.status', '1')
+        $items = Item::where('items.status', '1')
             ->select()
-            ->get();
+            ->paginate(10);
 
-        return view('item.index', compact('items','type'));
+        return view('item.index',compact('items','type'));
+        }
     }
 
     /**

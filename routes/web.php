@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 //一般ユーザー
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->name('items');
 
 //検索
 Route::prefix('search')->group(function () {
-    Route::get('/items', [App\Http\Controllers\SearchController::class, 'searchItems']);
-    Route::get('/users', [App\Http\Controllers\SearchController::class, 'searchUsers']);
+    Route::get('/items', [App\Http\Controllers\SearchController::class, 'Items'])->name('searchItems');
+    Route::get('/users', [App\Http\Controllers\SearchController::class, 'Users'])->name('searchUsers');
 });
 
 //管理者のみ
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
     });
     //ユーザー管理
     Route::prefix('users')->group(function () {
-        Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers']);
+        Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers'])->name('showUsers');
         Route::get('/edit{id}', [App\Http\Controllers\UserController::class, 'edit']);
         Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
     });

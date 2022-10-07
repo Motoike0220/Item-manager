@@ -22,6 +22,14 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
+                    <form method='GET' action='/items'>
+                            <p>検索条件</p>
+                            <select name="column">
+                                <option value='id'>ID</option>
+                                <option value='name'>名前</option>
+                                <option value='user_level'>ユーザーレベル</option>
+                            </select>
+                        </form>
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -45,7 +53,7 @@
             </div>
         </div>
     </div>
-
+    <p><a href ="{{route('items')}}">ホーム</a></p>
 @stop
 
 @section('css')

@@ -38,6 +38,7 @@
                         </tbody>
                     </table>
                 </div>
+                <p><a href ="{{route('items')}}">ホーム</a></p>
 @stop
 
 @section('css')
