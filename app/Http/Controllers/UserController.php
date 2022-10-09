@@ -10,11 +10,23 @@ class UserController extends Controller
 {
 
     //ユーザー一覧の表示
-    public function showUsers () {
-        $users = User::all();
-        return view("users.index",compact('users'));
-    }
+    public function users (Request $request) {
+        
+        if(isset($request->column)) {
 
+            $column = $request->input('column');
+            $keyword =$request->input('keyword');
+            $users = User::where($request->column,'LIKE',"%".$keyword."%")
+            ->paginate(1);
+    
+            return view('users.index',compact('users'));
+    
+            }else{
+        
+        $users = User::select()->paginate(10);
+        return view("users.index",compact('users'));
+        }
+    }
     //ユーザーの更新
     public function edit(Request $request){
         $user = User::find($request->id);

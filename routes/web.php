@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
     });
     //ユーザー管理
     Route::prefix('users')->group(function () {
-        Route::get('/', [App\Http\Controllers\UserController::class, 'showUsers'])->name('showUsers');
+        Route::get('/', [App\Http\Controllers\UserController::class, 'users'])->name('users');
         Route::get('/edit{id}', [App\Http\Controllers\UserController::class, 'edit']);
         Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
     });

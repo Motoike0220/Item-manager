@@ -35,8 +35,8 @@
                         <input type ='search' class ='form-control mr-sm-2' name ='keyword' aria-label='検索'>
                         </div>
                         <input type='submit' value='検索' class='btn btn-info'>
+                        <button type='submit' value='クリア'><a href={{route('items')}}>クリア</a></button>
                     </form>
-
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -69,13 +69,14 @@
             </div>
         </div>
     </div>
-    {!! $items->links() !!}
+    {!! $items->appends(request()->query())->links() !!}
+    
     @can ('Admin')
         <p><a href ="/items/deletedItems">削除された商品</a></p>
-        <p><a href ="{{route('showUsers')}}">ユーザー一覧</a></p>
+        <p><a href ="{{route('users')}}">ユーザー一覧</a></p>
         <p><a href ="{{route('searchUsers')}}">ユーザー検索</a></p>
     @endcan
-    <p><a href ="{{route('searchItems')}}">商品の検索</a></p>
+
 @stop
 
 @section('css')
