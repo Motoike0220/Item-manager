@@ -24,15 +24,17 @@
                 </div>
                 <div class="card-body table-responsive p-0">
                     <form method='get' action='/items'  class ='form-inline my-2 my-lg-0 ml-2'>
+                        @if($errors->has('keyword'))<br><span>{{$errors->first('keyword')}}</span>@endif
                         <p>検索条件</p>
                         <select name="column">
+                            <option value='' selected disable>検索条件を選んでください</option>
                             <option value='id'>ID</option>
                             <option value='user_name'>作成者</option>
                             <option value='name'>商品名</option>
                         </select>
                         
                         <select name ='types'>
-                            <option>種別を選んでください</option>
+                            <option value='' selected disable>種別を選んでください</option>
                             @foreach($type as $key => $value)
                             <option value="{{$key}}">{{$value}}</option>
                             @endforeach
@@ -44,6 +46,7 @@
                         <input type='submit' value='検索' class='btn btn-info'>
                         <button type='submit' value='クリア'><a href={{route('items')}}>クリア</a></button>
                     </form>
+
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>

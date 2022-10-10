@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
-
 use Illuminate\Pagination\Paginator;
+use Illuminate\support\Facades\validator;
 
 class ItemController extends Controller
 {
@@ -32,13 +32,24 @@ class ItemController extends Controller
         $type = Item::TYPE;
         $column = $request->input('column');
         $keyword =$request->input('keyword');
+        
         $items = Item::where('status',1)
         ->where($request->column,'LIKE',"%".$keyword."%")
         ->paginate(3);
         
         return view('item.index',compact('items','type'));
+        
+       } else if (isset($request->types)) {
+        
+           $type = Item::TYPE;
+           $items = Item::where('status',1)
+           ->where('type',$request->types)
+           ->select()->paginate(2);
 
-        } else {
+        return view('item.index',compact('items','type'));
+
+         } else {
+
         // 商品一覧取得
         $type = Item::TYPE;
         $items = Item::where('items.status', '1')
@@ -59,6 +70,8 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'name' => 'required|max:100',
+                'type' => 'required',
+                'detail' => 'required',
             ]);
 
             // 商品登録

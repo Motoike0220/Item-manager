@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="type">種別</label>
                            <p><select name='type'></p>
-                                <option>種類を選択してください</option>
+                                <option value='' selected disable>種類を選択してください</option>
                                 @foreach($type as $key => $value)
                                 <option value ="{{$key}}">{{$value}}</option>
                                 @endforeach
