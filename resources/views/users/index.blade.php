@@ -15,9 +15,7 @@
                     <h3 class="card-title"> ユーザー一覧</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
-                            <div class="input-group-append">
-                                <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -35,13 +33,20 @@
                         </div>
                         <input type='submit' value='検索' class='btn btn-info'>
                         <button type='submit' value='クリア'><a href={{route('users')}}>クリア</a></button>
+
+                        <select name='column'>
+                            <option value='$key'>{{'$value'}}</option>
+                        </select>
+
                     </form>
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>名前</th>
+                                <th>メールアドレス</th>
                                 <th>管理レベル</th>
+                                <th>更新</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +54,7 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>{{ $user->user_level }}</td>
                                     <td class="btn btn-warning"><a href ="/users/edit{{$user->id}}">更新</a></td>
                                 </tr>

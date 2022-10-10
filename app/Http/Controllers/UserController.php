@@ -17,11 +17,11 @@ class UserController extends Controller
             $column = $request->input('column');
             $keyword =$request->input('keyword');
             $users = User::where($request->column,'LIKE',"%".$keyword."%")
-            ->paginate(1);
+            ->paginate(3);
     
             return view('users.index',compact('users'));
     
-            }else{
+            } else {
         
         $users = User::select()->paginate(10);
         return view("users.index",compact('users'));
@@ -33,6 +33,7 @@ class UserController extends Controller
         if($request->isMethod('post')){
             User::find($request->id)->update([
                 'name' => $request->name,
+                'email' => $request->email,
             ]);
 
             return redirect('/users');
@@ -40,5 +41,10 @@ class UserController extends Controller
         return view('users.edit',compact('user'));
     }
 
-    //
+    //ユーザーの削除
+    public function deleteUser(Request $request) {
+        User::find($request->id)->delete();
+
+        return redirext ('/users');
+    }
 }

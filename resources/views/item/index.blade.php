@@ -29,8 +29,15 @@
                             <option value='id'>ID</option>
                             <option value='user_name'>作成者</option>
                             <option value='name'>商品名</option>
-                            <option value='type'>種別</option>
                         </select>
+                        
+                        <select name ='types'>
+                            <option>種別を選んでください</option>
+                            @foreach($type as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                            @endforeach
+                        </select>
+                           
                         <div class ='form-group'>
                         <input type ='search' class ='form-control mr-sm-2' name ='keyword' aria-label='検索'>
                         </div>

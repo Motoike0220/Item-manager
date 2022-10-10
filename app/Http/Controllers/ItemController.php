@@ -26,6 +26,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
        
+        //検索機能
         if(isset($request->column)) {
 
         $type = Item::TYPE;
@@ -34,7 +35,7 @@ class ItemController extends Controller
         $items = Item::where('status',1)
         ->where($request->column,'LIKE',"%".$keyword."%")
         ->paginate(3);
-
+        
         return view('item.index',compact('items','type'));
 
         } else {
