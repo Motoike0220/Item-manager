@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
         Route::get('/', [App\Http\Controllers\UserController::class, 'users'])->name('users');
         Route::get('/edit{id}', [App\Http\Controllers\UserController::class, 'edit']);
         Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
+        Route::post('/delete', [App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
     });
 });
 

@@ -25,22 +25,22 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-       
+
         //検索機能
         if(isset($request->column)) {
 
         $type = Item::TYPE;
         $column = $request->input('column');
         $keyword =$request->input('keyword');
-        
+
         $items = Item::where('status',1)
         ->where($request->column,'LIKE',"%".$keyword."%")
         ->paginate(3);
-        
+
         return view('item.index',compact('items','type'));
-        
+
        } else if (isset($request->types)) {
-        
+
            $type = Item::TYPE;
            $items = Item::where('status',1)
            ->where('type',$request->types)
@@ -94,12 +94,12 @@ class ItemController extends Controller
          // POSTリクエストのとき
          $item = Item::find($request->id);
          $type = Item::TYPE;
-         
+
          if ($request->isMethod('post')) {
-            
+
             Item::find($request->id)->update([
                 'user_id' => Auth::user()->id,
-                'user_name' => Auth::user()->name, 
+                'user_name' => Auth::user()->name,
                 'name' => $request->name,
                 'type' => $request->type,
                 'detail' => $request->detail,
@@ -110,7 +110,7 @@ class ItemController extends Controller
 
         return view('item.update',compact('item','type'));
     }
-    
+
     //削除された商品一覧
     public function deletedItems(Request $request){
         $items=Item::where('status',0)->get();
@@ -124,12 +124,12 @@ class ItemController extends Controller
         if($request->isMethod('post')){
             Item::where('id',$request->id)->where('status','1')->update(['status' => '0']);
             return redirect('/items');
-        } 
+        }
         //getで完全削除
         Item::where('id',$request->id)->where('status','0')->delete();
         return redirect('/items');
     }
-        
+
 
 
 }

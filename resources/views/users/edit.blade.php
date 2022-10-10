@@ -13,7 +13,7 @@
     <input type='hidden' name='id' value='{{$user->id}}'>
 </form>
 
-<form method='post' action='/items/delete'>
+<form method='post' action='{{route('deleteUser')}}'>
     @csrf
     <input type='hidden' name='id' value='{{$user->id}}'>
     <button type='submit' class='btn btn-danger'>削除</button>

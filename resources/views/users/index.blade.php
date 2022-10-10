@@ -34,10 +34,6 @@
                         <input type='submit' value='検索' class='btn btn-info'>
                         <button type='submit' value='クリア'><a href={{route('users')}}>クリア</a></button>
 
-                        <select name='column'>
-                            <option value='$key'>{{'$value'}}</option>
-                        </select>
-
                     </form>
                     <table class="table table-hover text-nowrap">
                         <thead>
