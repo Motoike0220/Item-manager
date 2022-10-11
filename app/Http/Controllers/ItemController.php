@@ -23,14 +23,12 @@ class ItemController extends Controller
     /**
      * 商品一覧
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
 
         //検索機能
-        if(isset($request->column)) {
+        if(isset($request->column) && !isset($request->types)) {
 
         $type = Item::TYPE;
-        $column = $request->input('column');
         $keyword =$request->input('keyword');
 
         $items = Item::where('status',1)
@@ -39,7 +37,7 @@ class ItemController extends Controller
 
         return view('item.index',compact('items','type'));
 
-       } else if (isset($request->types)) {
+        } else if (!isset($request->column) && isset($request->types)) {
 
            $type = Item::TYPE;
            $items = Item::where('status',1)
@@ -48,7 +46,17 @@ class ItemController extends Controller
 
         return view('item.index',compact('items','type'));
 
-         } else {
+        } else if (isset($request->column) && isset($request->types)){
+
+            $type = Item::TYPE;
+            $keyword = $request->input('keyword');
+            $items = Item::where('status',1)
+            ->where('type',$request->types)->where($request->column,'LIKE',"%".$keyword."%")
+           ->paginate(2);
+
+            return view('item.index',compact('items','type'));
+
+        } else {
 
         // 商品一覧取得
         $type = Item::TYPE;

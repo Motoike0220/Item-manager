@@ -67,7 +67,6 @@
     @can ('Admin')
         <p><a href ="/items/deletedItems">削除された商品</a></p>
         <p><a href ="{{route('users')}}">ユーザー一覧</a></p>
-        <p><a href ="{{route('searchUsers')}}">ユーザー検索</a></p>
     @endcan
 @stop
 
