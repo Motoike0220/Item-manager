@@ -23,8 +23,9 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
+                <p>検索条件</p>
                     <form method='get' action='/items'  class ='form-inline my-2 my-lg-0 ml-2'>
-                        <p>検索条件</p>
+                        @csrf
                         <select name="column">
                             <option value='' selected disable>検索条件を選んでください</option>
                             <option value='id'>ID</option>
@@ -35,15 +36,25 @@
                         <select name ='types'>
                             <option value='' selected disable>種別を選んでください</option>
                             @foreach($type as $key => $value)
-                            <option value="{{$key}}"@if(old('key') == $key) selected @endif>{{$value}}</option>
+                            <option value='{{$key}}'>{{$value}}</option>
                             @endforeach
                         </select>
 
                         <div class ='form-group'>
-                        <input type ='search' class ='form-control mr-sm-2' name ='keyword' aria-label='検索'>
+                        <input type ='search' class ='form-control mr-sm-1'  name ='keyword' aria-label='検索'>
                         </div>
                         <input type='submit' value='検索' class='btn btn-info'>
                         <button type='submit' value='クリア'><a href={{route('items')}}>クリア</a></button>
+                    </form>
+
+                    <form method='get' action={{route('sort')}} class ='form-inline my-2 my-lg-0 ml-2'>
+                        @csrf
+                        <select name="sorts">
+                            <option value='' selected disable>検索条件を選んでください</option>
+                            <option value='id'>ID</option>
+                            <option value='user_name'>作成日付</option>
+                        </select>
+                        <input type='submit' value='ソート' class='btn btn-info'>
                     </form>
 
                     <table class="table table-hover text-nowrap">

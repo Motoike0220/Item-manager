@@ -35,6 +35,7 @@ class UserController extends Controller
             User::find($request->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'user_level' => $request->user_level,
             ]);
 
             return redirect('/users');

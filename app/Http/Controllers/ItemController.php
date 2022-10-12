@@ -138,7 +138,18 @@ class ItemController extends Controller
         return redirect('/items');
     }
 
+    //ソート
+    public function sort(Request $request) {
 
+        if($request->sorts){
+            $type = Item::TYPE;
+
+            $items = Item::where('status',1)->orderBy($request->sorts,'asc')->get();
+
+            return redirect('/items',compact('items','type'));
+        }
+
+    }
 
 }
 
