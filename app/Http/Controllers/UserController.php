@@ -32,6 +32,12 @@ class UserController extends Controller
         $user = User::find($request->id);
         //postで更新
         if($request->isMethod('post')){
+
+            $this->validate($request, [
+                'email' => 'required|email:filter,dns',
+                'name' => 'required'
+            ]);
+
             User::find($request->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,

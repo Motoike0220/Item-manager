@@ -23,18 +23,17 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
-                <p>検索条件</p>
                     <form method='get' action='/items'  class ='form-inline my-2 my-lg-0 ml-2'>
                         @csrf
                         <select name="column">
-                            <option value='' selected disable>検索条件を選んでください</option>
+                            <option value='' selected disable>検索条件</option>
                             <option value='id'>ID</option>
                             <option value='user_name'>作成者</option>
                             <option value='name'>商品名</option>
                         </select>
 
                         <select name ='types'>
-                            <option value='' selected disable>種別を選んでください</option>
+                            <option value='' selected disable>種別選択</option>
                             @foreach($type as $key => $value)
                             <option value='{{$key}}'>{{$value}}</option>
                             @endforeach
