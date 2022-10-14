@@ -80,6 +80,11 @@ class ItemController extends Controller
                 'name' => 'required|max:100',
                 'type' => 'required',
                 'detail' => 'required',
+            ],[
+                'name.required' => '名前を入力してください。',
+                'name.max' => '100文字以内で入力してください。',
+                'type.required' => '種別を選択してください。',
+                'detail.required' => '詳細を入力してください',
             ]);
 
             // 商品登録
@@ -104,7 +109,16 @@ class ItemController extends Controller
          $type = Item::TYPE;
 
          if ($request->isMethod('post')) {
-
+            $this->validate($request, [
+                'name' => 'required|max:100',
+                'type' => 'required',
+                'detail' => 'required',
+            ],[
+                'name.required' => '名前を入力してください。',
+                'name.max' => '100文字以内で入力してください。',
+                'type.required' => '種別を選択してください。',
+                'detail.required' => '詳細を入力してください',
+            ]);
             Item::find($request->id)->update([
                 'user_id' => Auth::user()->id,
                 'user_name' => Auth::user()->name,
@@ -136,19 +150,6 @@ class ItemController extends Controller
         //getで完全削除
         Item::where('id',$request->id)->where('status','0')->delete();
         return redirect('/items');
-    }
-
-    //ソート
-    public function sort(Request $request) {
-
-        if($request->sorts){
-            $type = Item::TYPE;
-
-            $items = Item::where('status',1)->orderBy($request->sorts,'asc')->get();
-
-            return redirect('/items',compact('items','type'));
-        }
-
     }
 
 }

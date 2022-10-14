@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">名前</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="名前">
+                            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" placeholder="名前">
                         </div>
 
                         <div class="form-group">
@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                             <label for="detail">詳細</label>
-                            <input type="text" class="form-control" id="detail" name="detail" placeholder="詳細説明">
+                            <input type="text" class="form-control" id="detail" name="detail" value="{{old('detail')}}" placeholder="詳細説明">
                         </div>
                     </div>
 

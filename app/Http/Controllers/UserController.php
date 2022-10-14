@@ -32,10 +32,14 @@ class UserController extends Controller
         $user = User::find($request->id);
         //postで更新
         if($request->isMethod('post')){
-
+            //バリデーション
             $this->validate($request, [
                 'email' => 'required|email:filter,dns',
                 'name' => 'required'
+                                    ],
+            [   'name.required' => '名前を入力してください',
+                'email.required' => 'メールアドレスを入力してください',
+                'email.email' => '正しい形式のアドレスを入力してください'
             ]);
 
             User::find($request->id)->update([

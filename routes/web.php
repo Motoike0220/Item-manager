@@ -21,8 +21,6 @@ Auth::routes();
 //一般ユーザー
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->name('items');
-Route::get('/items/sort', [App\Http\Controllers\ItemController::class, 'sort'])->name('sort');
-
 
 //検索
 Route::prefix('search')->group(function () {

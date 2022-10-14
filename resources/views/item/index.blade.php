@@ -46,16 +46,6 @@
                         <button type='submit' value='クリア'><a href={{route('items')}}>クリア</a></button>
                     </form>
 
-                    <form method='get' action={{route('sort')}} class ='form-inline my-2 my-lg-0 ml-2'>
-                        @csrf
-                        <select name="sorts">
-                            <option value='' selected disable>検索条件を選んでください</option>
-                            <option value='id'>ID</option>
-                            <option value='user_name'>作成日付</option>
-                        </select>
-                        <input type='submit' value='ソート' class='btn btn-info'>
-                    </form>
-
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
