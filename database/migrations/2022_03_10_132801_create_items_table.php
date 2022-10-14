@@ -16,11 +16,11 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->string('user_name',100)->charset('utf8')->index();
-            $table->string('name', 100)->charset('utf8')->index();
+            $table->string('user_name',100)->charset("utf8")->index();
+            $table->string('name', 100)->charset("utf8")->index();
             $table->smallInteger('status')->default('1');
             $table->smallInteger('type')->nullable();
-            $table->string('detail', 500)->charset('utf8')->nullable();
+            $table->string('detail', 500)->charset("utf8")->nullable();
             $table->timestamps();
         });
     }
