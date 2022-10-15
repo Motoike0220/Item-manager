@@ -80,10 +80,10 @@
     </div>
     {!! $items->appends(request()->query())->links() !!}
 
-    @can ('Admin')
+    <!--@can ('Admin')-->
         <p><a href ="/items/deletedItems">削除された商品</a></p>
         <p><a href ="{{route('users')}}">ユーザー一覧</a></p>
-    @endcan
+    <!--@endcan-->
 
 @stop
 
