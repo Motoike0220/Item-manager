@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->charset("utf8")->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyinteger('user_level')->default('0');
+            $table->tinyinteger('user_level')->default('1');
             $table->timestamps();
         });
     }
