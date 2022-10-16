@@ -27,12 +27,19 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
+
                                     <form method='get' action='/items/delete'>
                                         @csrf
                                         <input type='hidden' name='id' value='{{$item->id}}'>
                                         <td><button type='submit' class='btn btn-danger'>削除</button></td>
                                     </form>
-                                    
+
+                                    <form method='get' action='{{route('restore')}}'>
+                                        @csrf
+                                        <input type='hidden' name='id' value='{{$item->id}}'>
+                                        <td><button type='submit' class='btn btn-danger'>商品を戻す</button></td>
+                                    </form>
+
                                 </tr>
                             @endforeach
                         </tbody>

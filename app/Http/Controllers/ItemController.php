@@ -152,5 +152,12 @@ class ItemController extends Controller
         return redirect('/items');
     }
 
+    //商品の回復
+    public function restore(Request $request) {
+        Item::find($request->id)
+                ->where('status','0')
+                ->update(['status' => '1']);
+        return redirect('/items');
+    }
 }
 

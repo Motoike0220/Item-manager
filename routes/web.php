@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
         Route::get('/deletedItems', [App\Http\Controllers\ItemController::class, 'deletedItems']);
         Route::post('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
         Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete']);
+        Route::get('/restore', [App\Http\Controllers\ItemController::class, 'restore'])->name('restore');
+    });
     });
     //ユーザー管理
     Route::prefix('users')->group(function () {
@@ -47,7 +49,8 @@ Route::group(['middleware' => ['auth','can:Admin']],function(){
         Route::post('/edit', [App\Http\Controllers\UserController::class, 'edit']);
         Route::post('/delete', [App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
     });
-});
+
+
 
 
 

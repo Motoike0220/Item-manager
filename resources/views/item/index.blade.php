@@ -68,7 +68,7 @@
                                     <td>{{ $type[$item->type] }}</td>
                                     <td>{{ $item->detail }}</td>
                                     @can ('Admin')
-                                    <td class="btn btn-info"><a href ="/items/update{{$item->id}}">更新</a></td>
+                                    <td class="btn btn-light"><a href ="/items/update{{$item->id}}">更新</a></td>
                                     @endcan
                                 </tr>
                             @endforeach
