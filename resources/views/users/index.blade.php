@@ -3,7 +3,7 @@
 @section('title', '商品一覧')
 
 @section('content_header')
-    <h1>ユーザー一覧</h1>
+
 @stop
 
 @section('content')
@@ -62,8 +62,6 @@
         </div>
     </div>
     {!! $users->appends(request()->query())->links() !!}
-    <p><a href ="{{route('items')}}">ホーム</a></p>
-
     @can ('Admin')
         <p><a href ="/items/deletedItems">削除された商品</a></p>
         <p><a href ="{{route('users')}}">ユーザー一覧</a></p>
