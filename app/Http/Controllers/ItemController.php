@@ -62,6 +62,7 @@ class ItemController extends Controller
         $type = Item::TYPE;
         $items = Item::where('items.status', '1')
             ->select()
+            ->orderby('id', 'ASC')
             ->paginate(10);
 
         return view('item.index',compact('items','type'));
