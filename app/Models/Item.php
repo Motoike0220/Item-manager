@@ -27,7 +27,6 @@ class Item extends Model
         4 => 'エンターテインメント',
         5 => '衣類',
         6 => '日用品',
-        7 => '人間',
     ];
     /**
      * The attributes that should be hidden for serialization.
